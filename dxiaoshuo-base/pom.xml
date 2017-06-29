@@ -4,12 +4,12 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.borui</groupId>
-		<artifactId>cxiaoshuo-parent</artifactId>
+		<groupId>com.danhuang</groupId>
+		<artifactId>dxiaoshuo-parent</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>cxiaoshuo-base</artifactId>
-	<name>cxiaoshuo-base</name>
+	<artifactId>dxiaoshuo-base</artifactId>
+	<name>dxiaoshuo-base</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>

@@ -1,14 +1,18 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>com.borui</groupId>
-		<artifactId>cxiaoshuo-parent</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
-	</parent>
-	<artifactId>cxiaoshuo-web</artifactId>
-	<packaging>war</packaging>
-	<properties>
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.danhuang</groupId>
+    <artifactId>dxiaoshuo-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>dxiaoshuo-task</artifactId>
+  <packaging>war</packaging>
+  <name>dxiaoshuo-task</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
 		<!-- web -->
 		<freemarker.version>2.3.19</freemarker.version>
 		<servlet.version>2.5</servlet.version>
@@ -38,21 +42,49 @@
 			<artifactId>jstl</artifactId>
 			<version>${jstl.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.borui</groupId>
-			<artifactId>cxiaoshuo-core</artifactId>
+
+        <dependency>
+			<groupId>com.danhuang</groupId>
+			<artifactId>dxiaoshuo-base</artifactId>
+			<version>${version}</version>
+			<exclusions>
+                <exclusion>  
+				 <groupId>org.apache.shiro</groupId>
+	             <artifactId>shiro-quartz</artifactId>
+             </exclusion>  
+            </exclusions>  
+		</dependency>
+         <dependency>
+			<groupId>com.danhuang</groupId>
+			<artifactId>dxiaoshuo-core</artifactId>
 			<version>${version}</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>servlet-api</artifactId>
 					<groupId>javax.servlet</groupId>
-				</exclusion>
-			</exclusions>
+				</exclusion> 
+            </exclusions>  
 		</dependency>
 		<dependency>
-			<groupId>com.borui</groupId>
-			<artifactId>cxiaoshuo-base</artifactId>
-			<version>${version}</version>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>2.2.3</version>
+			 
+		</dependency>
+		<dependency>
+    		<groupId>commons-collections</groupId>
+   		 	<artifactId>commons-collections</artifactId>
+   	 		<version>3.2.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>dom4j</groupId>
+		    <artifactId>dom4j</artifactId>
+		    <version>1.6</version>
+		</dependency>
+		<dependency>
+		    <groupId>jaxen</groupId>
+		    <artifactId>jaxen</artifactId>
+		    <version>1.1.6</version>
 		</dependency>
 	</dependencies>
 
@@ -80,7 +112,6 @@
 	</profiles>
 
 	<build>
-
 		<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
 		<resources>
 			<resource>
@@ -105,7 +136,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.1</version>
+				<version>3.1</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
@@ -120,10 +151,6 @@
 					<webXml>src\main\webapp\WEB-INF\web.xml</webXml>
 				</configuration>
 			</plugin>
-			
 		</plugins>
 	</build>
-
-
-
 </project>
