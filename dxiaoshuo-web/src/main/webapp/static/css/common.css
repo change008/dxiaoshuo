@@ -321,7 +321,7 @@ samp {
 
 header{
 	height: 44px;
-	background: #c93270;
+	background: #FF8C00;
 	position: relative;
 	top:0;
 	left: 0;
@@ -638,7 +638,7 @@ ul.mod_tab_title li:first-child.current {
 .mod_tab_content > ul > li:last-child{border-bottom: 0 none}
 
 footer{
-	background-color: #c93270;
+	background-color: #FF8C00;
 	border-top: 2px #c8c9d0 solid;
 	text-align: left;
         font-size:16px;
@@ -785,7 +785,7 @@ footer .cblue{
 .input_box textarea{border: 0 none; background: #fff; height: 120px; line-height: 42px;text-indent: 6px; width: 100%}
 .input_box label{position: absolute; left: 6px; top:10px; color:#bfbfbf}
 .input_box.error label{color:#ff1e1e}
-.btn{border:1px solid #c93270;background: #c93270; text-align: center; color: #fff; height: 40px; line-height: 39px; padding: 0 8px; margin:12px auto; display: inline-block;border-radius: 6px;}
+.btn{border:1px solid #FF8C00;background: #FF8C00; text-align: center; color: #fff; height: 40px; line-height: 39px; padding: 0 8px; margin:12px auto; display: inline-block;border-radius: 6px;}
 a.btn{color: #fff;}
 .btn.block{display: block;padding: 0;}
 button.btn.block{width: 100%}

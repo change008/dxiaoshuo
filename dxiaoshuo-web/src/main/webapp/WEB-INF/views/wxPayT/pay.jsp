@@ -85,7 +85,7 @@
 	</div>
 
 	 
-<div style="background-color: #c93270;padding: 8px 10px;">
+<div style="background-color: #FF8C00;padding: 8px 10px;">
 	<a href="http://t.cn/R6LUaeS">
 		点击关注公众号“<span style="color:#2897ed;border-bottom:1px solid">夏色小说/span>”阅读更多精彩美文
 	</a>

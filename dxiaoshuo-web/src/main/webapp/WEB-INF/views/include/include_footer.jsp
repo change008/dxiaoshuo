@@ -7,7 +7,7 @@
 <footer>
 
 	
-	<div style="background-color: #c93270; padding: 8px 10px;">
+	<div style="background-color: #FF8C00; padding: 8px 10px;">
 		<a style="color: white" href="http://t.cn/R6LUaeS"> 点击关注公众号“<span style="color: white; border-bottom: 1px solid">夏色小说</span>”方便下次继续阅读
 		</a>
 	</div>

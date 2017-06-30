@@ -10,6 +10,13 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:spring/spring-mybatis.xml</param-value>
 	</context-param>
+	
+	<!-- 首页数据 -->
+	<context-param>
+		<param-name>indexids</param-name>
+		<param-value>26785,26786,26794</param-value>
+	</context-param>
+	
 	<!-- 定义SPRING监听器,加载spring容器,目前主流推荐方式 -->
 	<listener>
 		<description>spring listener</description>
