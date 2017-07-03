@@ -36,12 +36,6 @@ public class WxBookServiceImpl implements IWxBookService {
 	public WxBook selectByPrimaryKey(Integer id) {
 		return this.wxBookMapper.selectByPrimaryKey(id);
 	}
-	
-	@Override
-	public WxBook selectByCollectionId(Integer collectionid) {
-		return this.wxBookMapper.selectByCollectionId(collectionid);
-	}
-	
 	@Override
 	public List<WxBook> getList(String strWhere, String orderStr,Integer size) {
 		return this.wxBookMapper.getList(strWhere, orderStr,size);
@@ -50,12 +44,45 @@ public class WxBookServiceImpl implements IWxBookService {
 	public int updateByPrimaryKeySelective(WxBook record) {
 		return this.wxBookMapper.updateByPrimaryKey(record);
 	}
-
+	
 	@Override
 	public int updateByPrimaryKey(WxBook record) {
 		return this.wxBookMapper.updateByPrimaryKey(record);
 	}
-
 	
+	@Override
+	public int insertToWxBook(WxBook wxBook, Integer mcpBookId, String uniqueflag) {
+		return wxBookMapper.insertToWxBook(wxBook, mcpBookId, uniqueflag);
+	}
+	
+	@Override
+	public int updateToWxBook(Integer mcpBookId, String uniqueflag) {
+		return wxBookMapper.updateToWxBook(mcpBookId, uniqueflag);
+	}
+	
+	@Override
+	public WxBook selectByUniqueFlag(String uniqueFlag) {
+		return wxBookMapper.selectByUniqueFlag(uniqueFlag);
+	}
+	
+	@Override
+	public List<WxBook> getBookIdByCPId(Integer cpId) {
+		return wxBookMapper.getBookIdByCPId(cpId);
+	}
+	
+	@Override
+	public WxBook getBookByName(String bookName) {
+		return wxBookMapper.getBookByName(bookName);
+	}
 
+	@Override
+	public List<WxBook> getSearchList(String strWhere) {
+		return wxBookMapper.getSearchList(strWhere);
+	}
+	
+	@Override
+	public WxBook selectByCollectionId(Integer collectionid) {
+		return this.wxBookMapper.selectByCollectionId(collectionid);
+	}
+	
 }
