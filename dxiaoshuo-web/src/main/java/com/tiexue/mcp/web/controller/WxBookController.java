@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.ContextLoader;
 
 import com.alibaba.fastjson.JSON;
 import com.tiexue.mcp.base.util.CookieUtils;
@@ -70,7 +71,12 @@ public class WxBookController {
 			}
 			String status = EnumType.BookStatus_Finish + "," + EnumType.BookStatus_Update;
 			String strWhere=" Status in ("+status+")";
+			
+			String idsStr = request.getSession().getServletContext().getInitParameter("indexids");
+			strWhere += " and id in(" + idsStr + ")";
+			
 			List<WxBook> wxBooks = this.wxBookService.getList(strWhere, "ViewCount",50);
+			
 			List<WxBookDto> wxBookDtos = toWxBookListDto(wxBooks);
 			request.setAttribute("wxBooks", wxBookDtos);
 			WxBookrack rack=new WxBookrack();
