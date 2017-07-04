@@ -45,21 +45,21 @@ fieldset {
 			<span>${wxChapterSub.title}</span>
 		</nav>
 		<div class="content" style="font-size: 18px;">
-			${wxChapterSub.content}</div>
+			${wxChapterIntro}</div>
 			
 		<div class="box-readmore">
 		<div style="text-align: left;margin-bottom:5px;font-size: 18px;margin-top: 10px;">
-			 <p style="text-indent: 2em;">由于篇幅限制，本页面只能更新到这！</p>
+			 <p style="text-indent: 2em;">由于篇幅限制，请关注公众号继续阅读！</p>
 		</div>
 	    <div style="text-align: center;margin-bottom:5px;font-size: 18px;margin-top: 10px;">
-			<p style="color:red;">后续更多内容，请长按下图二维码，</p>
-			<p style="color:red;">识别关注公众号，就可以继续阅读了哦！</p>
+			<p style="color:red;">后续内容更加精彩，请长按下图二维码，</p>
+			<p style="color:red;">关注公众号，继续阅读！</p>
 		</div>
 		<div style="text-align:center;">
-	    	<img style="width:242.5px;heigth:120.5px;" src="<%=path %>/static/image/QRCodeWuCai.png">
+	    	<img style="width:242.5px;heigth:120.5px;" src="<%=path %>/static/image/QRCodeDanhuang.png">
 		</div> 	
 		 <div style="text-align: center;margin-bottom:5px;font-size: 17px;margin-top: 10px;">
-			如果无法识别二维码可在微信公众号中搜索：<span style="color: #fb6d6b">五彩读书网</span>关注后可继续阅读
+			如果无法识别二维码可在微信公众号中搜索：<span style="color: #fb6d6b">蛋黄小说</span>关注后可继续阅读
 		</div>
 		</div>
 	</article>

@@ -431,6 +431,7 @@ public class WxChapterSubController {
 			String url="/wxChapterSub/index?bookId="+bookId+"&chapterId="+chapterId+"&fm="+fm;
 			CookieUtils.addcookie("readMark_Show", 1*365*24*60*60, response,url);
 			request.setAttribute("wxChapterSub", chapSubDto);
+			request.setAttribute("wxChapterIntro",chapterModel.getIntro());
 			return "/wxChapterSub/focusQR";
 		}
 		request.setAttribute("wxChapterSub", chapSubDto);

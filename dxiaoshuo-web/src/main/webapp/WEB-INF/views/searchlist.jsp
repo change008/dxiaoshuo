@@ -88,11 +88,6 @@
 <a href="#" onclick="testaddcookie()">测试登录</a>
 </div> -->
 
-<div style="background-color: rgba(50, 201, 186, 0.7);padding: 8px 10px;">
-	<a style="color:white" href="http://t.cn/R6LUaeS">
-		点击关注公众号“<span style="color:#2897ed;border-bottom:1px solid">五彩读书网</span>”方便下次继续阅读
-	</a>
-</div>
 
 <%@ include file="/WEB-INF/views/include/include_footer.jsp"%>
 </body>

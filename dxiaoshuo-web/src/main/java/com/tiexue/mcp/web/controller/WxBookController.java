@@ -157,7 +157,7 @@ public class WxBookController {
 			String fm = request.getParameter("fm");
 			String iptsearch=request.getParameter("iptsearch");
 			String status = EnumType.BookStatus_Finish + "," + EnumType.BookStatus_Update;
-			String strWhere=" Status in ("+status+")"+" and tag='军事'";
+			String strWhere=" Status in ("+status+")"+" ";
 			if(iptsearch!=null&&!iptsearch.isEmpty()){
 				strWhere+=" and name like  '%"+iptsearch+"%'";
 				List<WxBook> wxSearchBooks = this.wxBookService.getSearchList(strWhere);
