@@ -2,7 +2,9 @@ package com.tiexue.mcp.web.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -14,12 +16,16 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.alibaba.fastjson.JSON;
 import com.tiexue.mcp.base.util.CookieUtils;
 import com.tiexue.mcp.core.dto.PageUserDto;
 import com.tiexue.mcp.core.dto.ResultMsg;
+import com.tiexue.mcp.core.dto.WxBookDto;
 import com.tiexue.mcp.core.dto.WxChapterSubDto;
+import com.tiexue.mcp.core.dto.bookrackCookieDto;
 import com.tiexue.mcp.core.entity.EnumType;
 import com.tiexue.mcp.core.entity.WxBook;
+import com.tiexue.mcp.core.entity.WxBookrack;
 import com.tiexue.mcp.core.entity.WxChapter;
 import com.tiexue.mcp.core.entity.WxChapterSub;
 import com.tiexue.mcp.core.service.IUserConsService;
@@ -47,6 +53,8 @@ public class WxChapterSubController {
 	IWxUserService userSer;
 	@Resource
 	IWxBookrackService bookrackService;
+	
+	
 	/**
 	 * 获取免费章节的内容信息
 	 * @param request
@@ -438,18 +446,70 @@ public class WxChapterSubController {
 		return "wxChapterSub/show";
 	}
 	
+	/**
+	 * 继续阅读逻辑 这里直接返回用户最后阅读的图书的章节,如果能够找到章节就直接到对应章节,否则就到图书默认页面
+	 * **/
 	@RequestMapping("/readContinue")
 	public String readContinue(HttpServletRequest request,HttpServletResponse response, RedirectAttributes attr,
 			@CookieValue(value = "defaultbookrack", required = true, defaultValue = "") String rackCookie,
-			@CookieValue(value = "wx_gzh_token", required = true, defaultValue = "") String wx_gzh_token
-			,@CookieValue(value ="readMark_Show",required = true, defaultValue = "")String readMark_Show){
+			@CookieValue(value = "wx_gzh_token", required = true, defaultValue = "") String wx_gzh_token,
+			@CookieValue(value ="readMark_Show",required = true, defaultValue = "")String readMark_Show,
+			@CookieValue(value ="from_name",required = true, defaultValue = "")String from_name){
+		
+		//首先根据cookie数据获取最后读取的章节数据,拿不到的话再去专门的cookie中去查案
+		
+		WxBookrack bookrack=new WxBookrack();
+		bookrack=getBookrackByCookie(rackCookie);
+		String fm = "";
+		if(from_name!=null&&!from_name.isEmpty()){
+			//跳转到对应阅读页面
+			fm = from_name;
+		}
+		if(bookrack.getBookid() > 0 && bookrack.getChapterid() > 0){
+			return "redirect:/wxChapterSub/index?bookId=" + bookrack.getBookid() + "&chapterId=" + bookrack.getChapterid() + "&fm=" + fm;
+		}
+		
 		if(!readMark_Show.isEmpty()&&readMark_Show.contains("/wxChapterSub/index?bookId=")){
 			return "redirect:"+readMark_Show;
 		}
 		return "redirect:/wxBookrack/list";
 	}
 	
+	/**
+	 * 根据cookie获取收藏的书架
+	 * @param rackCookie
+	 * @return
+	 */
+	private WxBookrack getBookrackByCookie(String rackCookie){
+		WxBookrack rack = new WxBookrack();
+		 List<bookrackCookieDto> cookies=JSON.parseArray(rackCookie, bookrackCookieDto.class);
+		 if(cookies!=null&&cookies.size()>0){
+				 WxChapter curChap = null;
+				 WxBook book= bookService.selectByPrimaryKey(cookies.get(cookies.size()-1).getBookid());
+				 if(cookies.get(cookies.size()-1).getChapterid()>0){
+					 curChap=chapterService.selectByPrimaryKey(cookies.get(cookies.size()-1).getChapterid(), EnumType.ChapterStatus_OnLine);
+				 }
+				 rack = bookrackDtoFill(book,curChap);
+		 }
+		 return rack;
+	}
 
+	private WxBookrack bookrackDtoFill(WxBook book,WxChapter curChap){
+		WxBookrack rack = new WxBookrack();
+		if (book != null) {
+			rack.setBookid(book.getId());
+			rack.setBookname(book.getName());
+			rack.setLocation(0);
+			rack.setUserid(0);
+		}
+		if (curChap != null) {
+			rack.setChapterid(curChap.getId());
+			rack.setChaptertitle(curChap.getTitle());
+		}
+
+		return rack;
+	}
+	
 	/**
 	 * 获取章节内容信息
 	 * @param bookName

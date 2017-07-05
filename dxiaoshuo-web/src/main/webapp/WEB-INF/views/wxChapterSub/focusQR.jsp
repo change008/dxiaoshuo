@@ -52,7 +52,7 @@ fieldset {
 		</div>
 	    <div style="text-align: center;margin-bottom:5px;font-size: 18px;margin-top: 10px;">
 			<p style="color:red;">后续内容更加精彩，请长按下图二维码，</p>
-			<p style="color:red;">关注公众号，继续阅读！</p>
+			<p style="color:red;">识别二维码关注公众号，继续阅读！</p>
 		</div>
 		<div style="text-align:center;">
 	    	<img style="width:242.5px;heigth:120.5px;" src="<%=path %>/static/image/QRCodeDanhuang.png">
