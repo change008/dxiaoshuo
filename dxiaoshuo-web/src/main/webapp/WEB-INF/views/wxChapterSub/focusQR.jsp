@@ -20,7 +20,6 @@
 .box-readmore {
 	box-shadow: 0 -3px 10px -4px rgba(0, 0, 0, 0.3);
 	position: relative;
-	height: 50px;
 }
 
 .content {
