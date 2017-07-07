@@ -158,13 +158,13 @@
 		<c:forEach items="${wxChapters}" var="chapters">
 			<li><c:if test="${chapters.getChaptertype()==0}">
 			    <a class="chapter" onclick="addbookrack('${wxBook.id}','${chapters.id}')"
-				href="<%=path%>/wxChapterSub/index?bookId=${wxBook.id}&chapterId=${chapters.id}&orderNum=${sortorder}&fm=${fromurl}">
+				href="<%=path%>/wxChapterSub/index?bookId=${wxBook.id}&chapterId=${chapters.id}&fm=${fromurl}">
 					${chapters.title} </a>
 					<span class="fn-right c999">免费</span>
 				</c:if>
 				<c:if test="${chapters.getChaptertype()!=0}">
 			    <a class="chapter" onclick="addbookrack('${wxBook.id}','${chapters.id}')"
-				href="<%=path%>/wxChapterSub/vip?bookId=${wxBook.id}&chapterId=${chapters.id}&orderNum=${sortorder}&fm=${fromurl}">
+				href="<%=path%>/wxChapterSub/vip?bookId=${wxBook.id}&chapterId=${chapters.id}&fm=${fromurl}">
 					${chapters.title} </a>
 				</c:if>
 		    </li>
