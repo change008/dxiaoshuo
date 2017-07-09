@@ -14,7 +14,7 @@
 	<!-- 首页数据 -->
 	<context-param>
 		<param-name>indexids</param-name>
-		<param-value>26785,26786,26794</param-value>
+		<param-value>26797,26798,26799</param-value>
 	</context-param>
 	
 	<!-- 定义SPRING监听器,加载spring容器,目前主流推荐方式 -->
