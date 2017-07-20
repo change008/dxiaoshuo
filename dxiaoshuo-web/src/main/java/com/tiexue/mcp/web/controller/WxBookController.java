@@ -75,9 +75,6 @@ public class WxBookController {
 			String status = EnumType.BookStatus_Finish + "," + EnumType.BookStatus_Update;
 			String strWhere=" Status in ("+status+")";
 			
-			String idsStr = request.getSession().getServletContext().getInitParameter("indexids");
-			strWhere += " and id in(" + idsStr + ")";
-			
 			List<WxBook> wxBooks = this.wxBookService.getList(strWhere, "ViewCount",80);
 			
 			List<WxBookDto> wxBookDtos = toWxBookListDto(wxBooks);

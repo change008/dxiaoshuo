@@ -147,7 +147,7 @@ public class WxReceiveController {
 			newBook.setPublishername("");
 			newBook.setSharecount(0);
 			newBook.setSort(0);
-			newBook.setStatus(1);
+			newBook.setStatus(book.getStatus());
 			newBook.setTag("");
 			newBook.setUniqueflag(book.getUniqueflag());
 			newBook.setUpdatetime(new Date());
@@ -213,7 +213,7 @@ public class WxReceiveController {
 
 		WxChapter newChapter = new WxChapter();
 		newChapter.setBookid(oldBook.getId());
-		newChapter.setChaptertype(0);
+		newChapter.setChaptertype(1);
 		newChapter.setContentlen(chapterTransfer.getContentlen());
 		newChapter.setCreatetime(new Date());
 		newChapter.setIntro(chapterTransfer.getIntro());

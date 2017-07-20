@@ -15,6 +15,8 @@ public class WxCollectBookDto {
     private int collectionid;
 
     private int contentlen;
+    
+    private int status;
    
     public String getName() {
         return name;
@@ -73,5 +75,13 @@ public class WxCollectBookDto {
 	public void setCollectionid(int collectionid) {
 		this.collectionid = collectionid;
 	}
+	
+	public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
     
 }
