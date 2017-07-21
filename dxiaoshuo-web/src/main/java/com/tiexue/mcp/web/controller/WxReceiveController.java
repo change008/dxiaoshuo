@@ -219,7 +219,7 @@ public class WxReceiveController {
 		newChapter.setIntro(chapterTransfer.getIntro());
 		newChapter.setPirce(chapterTransfer.getPirce());
 		newChapter.setRemark("");
-		newChapter.setShowtype(0);
+		newChapter.setShowtype(1);
 		newChapter.setSortorder(1);
 		newChapter.setStatus(1);
 		newChapter.setTitle(chapterTransfer.getTitle());

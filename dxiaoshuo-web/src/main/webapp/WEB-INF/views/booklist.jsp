@@ -63,8 +63,8 @@
 	<div class="mod_content">
 		<ul>
 			<c:forEach items="${wxBooks}" var="books">
-				<li><a onclick="addbookrack('${books.id}','0')" href="<%=path%>/wxbook/detail?id=${books.id}&fm=${fromurl}"> <img class="fn-left lazy" src="${books.coverImgs}"
-						dataimg="${books.coverImgs}" alt="${books.name}">
+				<li><a onclick="addbookrack('${books.id}','0')" href="<%=path%>/wxbook/detail?id=${books.id}&fm=${fromurl}"> 
+				<img class="fn-left lazy" src="${books.coverImgs}" dataimg="${books.coverImgs}" alt="${books.name}">
 						<div>
 							<p>${books.name}</p>
 							<p class="intro">${books.getIntr()}</p>
