@@ -22,7 +22,9 @@
              <li><label>专题：</label><a href="#">言情小说</a></li>
 			<li><label>类别：</label><a href="#">${wxBook.tag}</a></li>
 			<li><label>状态：</label>${wxBook.status}</li>
-			<li><label>字数：</label>${wxBook.getContentLen()}</li>
+			<c:if test="${wxBook.getContentLen()>0}">
+				<li><label>字数：</label>${wxBook.getContentLen()}</li>
+			</c:if>
 			<li><label></label><span class="orange"></span> <a class="scrollTo" href="#comments"></a></li>
 		</ul>
 	</div>
