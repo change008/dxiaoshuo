@@ -17,6 +17,17 @@
 	text-align: center;
 }
 
+.box-readmore {
+	box-shadow: 0 -3px 10px -4px rgba(0, 0, 0, 0.3);
+	position: relative;
+}
+
+.content {
+	max-height: 700px;
+	word-break: break-word;
+	overflow: hidden;
+}
+
 fieldset {
 	border: none;
 	border-top: 1px solid #ccc;
@@ -33,24 +44,23 @@ fieldset {
 			<span>${wxChapterSub.title}</span>
 		</nav>
 		<div class="content" style="font-size: 18px;">
-			${wxChapterSub.content}
+			${wxChapterIntro}</div>
+			
+		<div class="box-readmore">
+		<div style="text-align: left;margin-bottom:5px;font-size: 18px;margin-top: 10px;">
+			 <p style="text-indent: 2em;">由于篇幅限制，请关注公众号继续阅读！</p>
 		</div>
-		<ul class="chapter_pager">
-
-			<li class="pn2"><c:if test="${wxChapterSub.preId>0 }">
-					<a class="chapter_prev btn white block" data-cid="${wxChapterSub.preId}" href="<%=path %>/wxChapterSub/show?bookId=${wxChapterSub.bookId}&chapterId=${wxChapterSub.preId}&fm=${fromurl}&qr=${qr}">上一章</a>
-				</c:if> <c:if test="${wxChapterSub.preId<=0 }">
-					<a class="chapter_prev btn white block" href="#" disabled="disabled">上一章</a>
-				</c:if></li>
-			<li class="pn2"><c:if test="${wxChapterSub.nextId>0 }">
-
-					<a onclick="addbookrack('${wxChapterSub.bookId}','${wxChapterSub.nextId}')" class="chapter_next btn block" data-cid="${wxChapterSub.nextId}"
-						href="<%=path %>/wxChapterSub/show?bookId=${wxChapterSub.bookId}&chapterId=${wxChapterSub.nextId}&fm=${fromurl}&qr=${qr}">下一章</a>
-				</c:if> <c:if test="${wxChapterSub.nextId<=0 }">
-					<a class="chapter_next btn block" href="#" disabled="disabled">下一章</a>
-				</c:if></li>
-		</ul>
-		<%@ include file="/WEB-INF/views/include/include_footer_QR.jsp"%>
+	    <div style="text-align: center;margin-bottom:5px;font-size: 18px;margin-top: 10px;">
+			<p style="color:red;">后续内容更加精彩，请长按下图二维码，</p>
+			<p style="color:red;">识别二维码关注公众号，继续阅读！</p>
+		</div>
+		<div style="text-align:center;">
+	    	<img style="width:242.5px;heigth:120.5px;" src="<%=path %>/static/image/qrcode_7.jpg">
+		</div> 	
+		 <div style="text-align: center;margin-bottom:5px;font-size: 17px;margin-top: 10px;">
+			如果无法识别二维码可在微信公众号中搜索：<span style="color: #fb6d6b">蛋黄小说</span>关注后可继续阅读
+		</div>
+		</div>
 	</article>
 </body>
 

@@ -356,6 +356,13 @@ public class WxChapterSubController {
 		String bookIdStr = request.getParameter("bookId");
 		String chapterIdStr = request.getParameter("chapterId");
 		String fm = request.getParameter("fm");
+		
+		//判断显示哪个Qr
+		String qrCode = request.getParameter("qr");
+		if (qrCode == null || chapterIdStr.isEmpty()) {
+			qrCode = "0";
+		}
+		
 		String bookName = "";
 		String chapterTitle="";
 		int userId = 0;
@@ -421,6 +428,7 @@ public class WxChapterSubController {
 				request.setAttribute("pageNo",pageNo);
 			}
 			request.setAttribute("fromurl", fm);
+			request.setAttribute("qr", qrCode);
 		}
 		//保存书架
         if(bookId>0&&userId>0){
@@ -429,18 +437,19 @@ public class WxChapterSubController {
         //把小说来源公共号信息放到cookie中
 		if((from_name==null||from_name.isEmpty())&&fm!=null&&!fm.isEmpty()){
 			CookieUtils.addcookie("from_name", 1*365*24*60*60, response,fm);
-		}//逍遥医圣在都市||监狱风云||苗疆蛊事||1980之他来自未来
-//		if((bookId==26795&&chapterId>=67995)||(bookId==26794&&chapterId>=67678)||(bookId==26779&&chapterId>=49561)||(bookId==26777&&chapterId>=17553)){
-//			String url="/wxChapterSub/index?bookId="+bookId+"&chapterId="+chapterId+"&fm="+fm;
-//			CookieUtils.addcookie("readMark_Show", 1*365*24*60*60, response,url);
-//			return "/wxChapterSub/focusQR";
-//		}
+		}
+		
 		if(chapterModel!=null&&chapterModel.getShowtype()==1){
 			String url="/wxChapterSub/index?bookId="+bookId+"&chapterId="+chapterId+"&fm="+fm;
 			CookieUtils.addcookie("readMark_Show", 1*365*24*60*60, response,url);
 			request.setAttribute("wxChapterSub", chapSubDto);
 			request.setAttribute("wxChapterIntro",chapterModel.getIntro());
-			return "/wxChapterSub/focusQR";
+			
+			//计算返回哪个加粉页面
+			String qrStringFormat = "/wxChapterSub/focusQR%s";
+			String qrString = String.format(qrStringFormat, qrCode);
+			
+			return qrString;
 		}
 		request.setAttribute("wxChapterSub", chapSubDto);
 		return "wxChapterSub/show";
@@ -458,19 +467,23 @@ public class WxChapterSubController {
 		
 		//首先根据cookie数据获取最后读取的章节数据,拿不到的话再去专门的cookie中去查案
 		
-		WxBookrack bookrack=new WxBookrack();
-		bookrack=getBookrackByCookie(rackCookie);
-		String fm = "";
-		if(from_name!=null&&!from_name.isEmpty()){
-			//跳转到对应阅读页面
-			fm = from_name;
-		}
-		if(bookrack.getBookid() > 0 && bookrack.getChapterid() > 0){
-			return "redirect:/wxChapterSub/index?bookId=" + bookrack.getBookid() + "&chapterId=" + bookrack.getChapterid() + "&fm=" + fm;
-		}
-		
-		if(!readMark_Show.isEmpty()&&readMark_Show.contains("/wxChapterSub/index?bookId=")){
-			return "redirect:"+readMark_Show;
+		try {
+			WxBookrack bookrack=new WxBookrack();
+			bookrack=getBookrackByCookie(rackCookie);
+			String fm = "";
+			if(from_name!=null&&!from_name.isEmpty()){
+				//跳转到对应阅读页面
+				fm = from_name;
+			}
+			if(bookrack.getBookid() != null && bookrack.getBookid() > 0 && bookrack.getChapterid() != null && bookrack.getChapterid() > 0){
+				return "redirect:/wxChapterSub/index?bookId=" + bookrack.getBookid() + "&chapterId=" + bookrack.getChapterid() + "&fm=" + fm;
+			}
+			
+			if(!readMark_Show.isEmpty()&&readMark_Show.contains("/wxChapterSub/index?bookId=")){
+				return "redirect:"+readMark_Show;
+			}
+		} catch (Exception e) {
+			
 		}
 		return "redirect:/wxBookrack/list";
 	}
@@ -482,15 +495,20 @@ public class WxChapterSubController {
 	 */
 	private WxBookrack getBookrackByCookie(String rackCookie){
 		WxBookrack rack = new WxBookrack();
-		 List<bookrackCookieDto> cookies=JSON.parseArray(rackCookie, bookrackCookieDto.class);
-		 if(cookies!=null&&cookies.size()>0){
-				 WxChapter curChap = null;
-				 WxBook book= bookService.selectByPrimaryKey(cookies.get(cookies.size()-1).getBookid());
-				 if(cookies.get(cookies.size()-1).getChapterid()>0){
-					 curChap=chapterService.selectByPrimaryKey(cookies.get(cookies.size()-1).getChapterid(), EnumType.ChapterStatus_OnLine);
-				 }
-				 rack = bookrackDtoFill(book,curChap);
-		 }
+		
+		try {
+			 List<bookrackCookieDto> cookies=JSON.parseArray(rackCookie, bookrackCookieDto.class);
+			 if(cookies!=null&&cookies.size()>0){
+					 WxChapter curChap = null;
+					 WxBook book= bookService.selectByPrimaryKey(cookies.get(cookies.size()-1).getBookid());
+					 if(cookies.get(cookies.size()-1).getChapterid()>0){
+						 curChap=chapterService.selectByPrimaryKey(cookies.get(cookies.size()-1).getChapterid(), EnumType.ChapterStatus_OnLine);
+					 }
+					 rack = bookrackDtoFill(book,curChap);
+			 }
+		} catch (Exception e) {
+			
+		}
 		 return rack;
 	}
 
