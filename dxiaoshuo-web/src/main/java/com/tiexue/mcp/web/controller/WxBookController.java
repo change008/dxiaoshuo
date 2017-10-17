@@ -73,7 +73,7 @@ public class WxBookController {
 				logger.error("获取 pageUser.getId："+userIdStr);
 			}
 			String status = EnumType.BookStatus_Finish + "," + EnumType.BookStatus_Update;
-			String strWhere=" Status in ("+status+")";
+			String strWhere=" Status in ("+status+") and 1=2 ";
 			
 			List<WxBook> wxBooks = this.wxBookService.getList(strWhere, "ViewCount",80);
 			
@@ -154,7 +154,7 @@ public class WxBookController {
 			String fm = request.getParameter("fm");
 			String iptsearch=request.getParameter("iptsearch");
 			String status = EnumType.BookStatus_Finish + "," + EnumType.BookStatus_Update;
-			String strWhere=" Status in ("+status+")"+" ";
+			String strWhere=" Status in (88)"+" ";
 			if(iptsearch!=null&&!iptsearch.isEmpty()){
 				strWhere+=" and name like  '%"+iptsearch+"%'";
 				List<WxBook> wxSearchBooks = this.wxBookService.getSearchList(strWhere);
