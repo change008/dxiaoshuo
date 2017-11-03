@@ -84,7 +84,7 @@ public interface WxBookMapper {
         "ViewCount, CommentCount, DingCount, CaiCount, ShareCount, ContentLen, CreateTime, ",
         "UpdateTime,UniqueFlag,CollectionId",
         "from wxbook",
-        "where ${strWhere} order by ViewCount desc  LIMIT 0,#{size} "
+        "where ${strWhere} order by Id desc  LIMIT 0,#{size} "
     })
     @ResultMap("BaseResultMap")
     List<WxBook> getList(@Param("strWhere")String strWhere,@Param("orderStr")String orderStr,@Param("size")Integer size);

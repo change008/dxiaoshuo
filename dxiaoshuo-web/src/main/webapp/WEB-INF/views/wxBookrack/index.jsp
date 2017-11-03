@@ -48,8 +48,11 @@
 			</c:forEach>
 		</ul>
 		<div style="background-color: #FF8C00; padding: 8px 10px;">
-			<u><a style="color:white" href="<%=path%>/?fm=${fromurl}">去首页看更多精彩图书</a></u>
+			<u><a style="color:white" href="<%=path%>/wxUser/login/?fm=${fromurl}">登录找回阅读历史记录</a></u>
 		</div>
+		<%-- <div style="background-color: #FF8C00; padding: 8px 10px;">
+			<u><a style="color:white" href="<%=path%>/?fm=${fromurl}">去首页看更多精彩图书</a></u>
+		</div> --%>
 	</div>
 
 	<%@ include file="/WEB-INF/views/include/include_footer.jsp"%>
